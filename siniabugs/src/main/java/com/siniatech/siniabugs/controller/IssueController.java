@@ -25,8 +25,16 @@ public class IssueController extends MultiActionController {
 
     public ModelAndView list( HttpServletRequest request, HttpServletResponse response ) throws Exception {
         ModelMap modelMap = new ModelMap();
-        modelMap.addAttribute( "IssueList", issueDao.listIssue() );
-        modelMap.addAttribute( "Issue", new Issue() );
-        return new ModelAndView( "IssueForm", modelMap );
+        modelMap.addAttribute( "issueList", issueDao.listIssue() );
+        modelMap.addAttribute( "issue", new Issue() );
+        return new ModelAndView( "issueForm", modelMap );
+    }
+
+    @Override
+    public ModelAndView handleRequest( HttpServletRequest request, HttpServletResponse response ) throws Exception {
+        ModelMap modelMap = new ModelMap();
+        modelMap.addAttribute( "issueList", issueDao.listIssue() );
+        modelMap.addAttribute( "issue", new Issue() );
+        return new ModelAndView( "issueForm", modelMap );
     }
 }

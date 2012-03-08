@@ -29,15 +29,5 @@
 		</property>
 	</bean>
 
-	<bean id="myIssueDao" class="com.siniatech.siniabugs.dao.IssueDao">
-		<constructor-arg>
-			<ref bean="mySessionFactory" />
-		</constructor-arg>
-	</bean>
 
-	<bean name="/issue/*.htm" class="com.siniatech.siniabugs.controller.IssueController">
-		<constructor-arg>
-			<ref bean="myIssueDao" />
-		</constructor-arg>
-	</bean>
 </beans>

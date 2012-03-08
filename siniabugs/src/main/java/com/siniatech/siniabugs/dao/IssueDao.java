@@ -19,7 +19,7 @@ public class IssueDao implements IIssueDao {
     }
 
     public List<Issue> listIssue() {
-        return hibernateTemplate.find( "from User" );
+        return hibernateTemplate.find( "from Issue" );
     }
 
 }
