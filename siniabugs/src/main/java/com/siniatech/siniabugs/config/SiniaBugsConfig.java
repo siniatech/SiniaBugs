@@ -1,5 +1,8 @@
 package com.siniatech.siniabugs.config;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.Comparator;
 import java.util.Properties;
 
@@ -40,14 +43,25 @@ public class SiniaBugsConfig {
         }
     }
 
+    @Bean
+    Properties siniaBugsProperties() throws Exception {
+        File propertiesFile = new File( System.getProperty( "user.home" ) + File.separator + "siniabugs.properties" );
+        InputStream in = new FileInputStream( propertiesFile );
+        Properties prop = new Properties();
+        prop.load( in );
+        in.close();
+        return prop;
+    }
+
     // need to start hsqldb: java -cp hsqldb-2.2.8.jar org.hsqldb.server.Server --database.0 file:mydb --dbname.0 xdb
     @Bean
-    DataSource dataSource() {
+    DataSource dataSource() throws Exception {
+        Properties properties = siniaBugsProperties();
         BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName( "org.hsqldb.jdbcDriver" );
-        dataSource.setUrl( "jdbc:hsqldb:hsql://localhost:9001/xdb" );
-        dataSource.setUsername( "sa" );
-        dataSource.setPassword( "" );
+        dataSource.setDriverClassName( (String) properties.get( "db.driver" ) );
+        dataSource.setUrl( (String) properties.get( "db.url" ) );
+        dataSource.setUsername( (String) properties.get( "db.username" ) );
+        dataSource.setPassword( (String) properties.get( "db.password" ) );
         return dataSource;
     }
 
@@ -62,12 +76,8 @@ public class SiniaBugsConfig {
         return sessionFactoryBean.getObject();
     }
 
-    private Properties hibernateProperties() {
-        Properties properties = new Properties();
-        properties.put( "hibernate.dialect", "org.hibernate.dialect.HSQLDialect" );
-        properties.put( "hibernate.show_sql", true );
-        properties.put( "hibernate.hbm2ddl.auto", "create" );
-        return properties;
+    private Properties hibernateProperties() throws Exception {
+        return siniaBugsProperties();
     }
 
     @Bean
