@@ -1,40 +1,23 @@
 package com.siniatech.siniabugs.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.ui.ModelMap;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.siniatech.siniabugs.dao.IIssueDao;
 import com.siniatech.siniabugs.model.Issue;
 
-public class IssueController extends MultiActionController {
+@Controller
+public class IssueController {
 
+    @Autowired
     private IIssueDao issueDao;
 
-    public IssueController( IIssueDao issueDao ) {
-        this.issueDao = issueDao;
-    }
-
-    public ModelAndView add( HttpServletRequest request, HttpServletResponse response, Issue Issue ) throws Exception {
-        issueDao.saveIssue( Issue );
-        return new ModelAndView( "redirect:list.htm" );
-    }
-
-    public ModelAndView list( HttpServletRequest request, HttpServletResponse response ) throws Exception {
-        ModelMap modelMap = new ModelMap();
-        modelMap.addAttribute( "issueList", issueDao.listIssue() );
-        modelMap.addAttribute( "issue", new Issue() );
-        return new ModelAndView( "issueForm", modelMap );
-    }
-
-    @Override
-    public ModelAndView handleRequest( HttpServletRequest request, HttpServletResponse response ) throws Exception {
-        ModelMap modelMap = new ModelMap();
-        modelMap.addAttribute( "issueList", issueDao.listIssue() );
-        modelMap.addAttribute( "issue", new Issue() );
-        return new ModelAndView( "issueForm", modelMap );
+    @RequestMapping(value = "/issue")
+    public String list( Model model ) {
+        model.addAttribute( "issueList", issueDao.listIssue() );
+        model.addAttribute( "issue", new Issue() );
+        return "issueForm";
     }
 }
