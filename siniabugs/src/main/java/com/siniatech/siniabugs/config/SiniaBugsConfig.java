@@ -45,12 +45,22 @@ public class SiniaBugsConfig {
 
     @Bean
     Properties siniaBugsProperties() throws Exception {
-        File propertiesFile = new File( System.getProperty( "user.home" ) + File.separator + "siniabugs.properties" );
-        InputStream in = new FileInputStream( propertiesFile );
         Properties prop = new Properties();
+        loadProperties( new File( System.getProperty( "user.home" ) + File.separator + "siniabugs.properties" ), prop );
+        loadProperties( getClass().getResourceAsStream( "/siniabugs-system.properties" ), prop );
+        return prop;
+    }
+
+    private void loadProperties( File propertiesFile, Properties prop ) throws Exception {
+        if ( propertiesFile.exists() ) {
+            InputStream in = new FileInputStream( propertiesFile );
+            loadProperties( in, prop );
+        }
+    }
+
+    private void loadProperties( InputStream in, Properties prop ) throws Exception {
         prop.load( in );
         in.close();
-        return prop;
     }
 
     // need to start hsqldb: java -cp hsqldb-2.2.8.jar org.hsqldb.server.Server --database.0 file:mydb --dbname.0 xdb
