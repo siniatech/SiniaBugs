@@ -8,5 +8,5 @@ public interface IIssueDao {
 
     void saveIssue( Issue issue );
 
-    List<Issue> listIssue();
+    List<Issue> listIssues();
 }

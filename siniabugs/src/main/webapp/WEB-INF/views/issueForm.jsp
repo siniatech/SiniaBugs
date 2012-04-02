@@ -15,7 +15,7 @@
 </head>
 <body>
 
-	<form:form action="add.htm" commandName="issue">
+	<form:form action="issue" commandName="issue">
 		<table>
 			<tr>
 				<td>Title :</td>

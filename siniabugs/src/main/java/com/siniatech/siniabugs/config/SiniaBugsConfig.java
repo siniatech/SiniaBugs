@@ -63,7 +63,7 @@ public class SiniaBugsConfig {
         in.close();
     }
 
-    // need to start hsqldb: java -cp hsqldb-2.2.8.jar org.hsqldb.server.Server --database.0 file:mydb --dbname.0 xdb
+    // FORneed to start hsqldb: java -cp hsqldb-2.2.8.jar org.hsqldb.server.Server --database.0 file:mydb --dbname.0 xdb
     @Bean
     DataSource dataSource() throws Exception {
         Properties properties = siniaBugsProperties();

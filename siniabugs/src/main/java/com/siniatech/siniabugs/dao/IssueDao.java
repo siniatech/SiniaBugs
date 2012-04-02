@@ -18,7 +18,7 @@ public class IssueDao implements IIssueDao {
         hibernateTemplate.saveOrUpdate( issue );
     }
 
-    public List<Issue> listIssue() {
+    public List<Issue> listIssues() {
         return hibernateTemplate.find( "from Issue" );
     }
 

@@ -16,7 +16,7 @@ public class Issue {
 
     @Id
     @GeneratedValue
-    @Column(name = "ID")
+    @Column(name = "id")
     public Long getId() {
         return id;
     }
@@ -25,7 +25,7 @@ public class Issue {
         this.id = id;
     }
 
-    @Column(name = "TITLE")
+    @Column(name = "title")
     public String getTitle() {
         return title;
     }
@@ -34,7 +34,7 @@ public class Issue {
         this.title = title;
     }
 
-    @Column(name = "DESCRIPTION")
+    @Column(name = "description")
     public String getDescription() {
         return description;
     }
