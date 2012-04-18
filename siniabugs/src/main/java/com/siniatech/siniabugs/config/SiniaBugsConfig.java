@@ -17,8 +17,12 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.siniatech.siniabugs.dao.IIssueDao;
+import com.siniatech.siniabugs.dao.IIssueTypeDao;
 import com.siniatech.siniabugs.dao.IssueDao;
+import com.siniatech.siniabugs.dao.IssueTypeDao;
+import com.siniatech.siniabugs.model.BugsUser;
 import com.siniatech.siniabugs.model.Issue;
+import com.siniatech.siniabugs.model.IssueType;
 
 @Configuration
 public class SiniaBugsConfig {
@@ -78,8 +82,8 @@ public class SiniaBugsConfig {
     @Bean
     SessionFactory sessionFactory() throws Exception {
         AnnotationSessionFactoryBean sessionFactoryBean = new AnnotationSessionFactoryBean();
-        sessionFactoryBean.setAnnotatedPackages( new String[] { "com.siniatech.siniabugs.model.issue" } );
-        sessionFactoryBean.setAnnotatedClasses( new Class[] { Issue.class } );
+        sessionFactoryBean.setAnnotatedPackages( new String[] { "com.siniatech.siniabugs.model" } );
+        sessionFactoryBean.setAnnotatedClasses( new Class[] { Issue.class, IssueType.class, BugsUser.class } );
         sessionFactoryBean.setDataSource( dataSource() );
         sessionFactoryBean.setHibernateProperties( hibernateProperties() );
         sessionFactoryBean.afterPropertiesSet();
@@ -93,6 +97,11 @@ public class SiniaBugsConfig {
     @Bean
     IIssueDao issueDao() throws Exception {
         return new IssueDao( sessionFactory() );
+    }
+
+    @Bean
+    IIssueTypeDao issueTypeDao() throws Exception {
+        return new IssueTypeDao( sessionFactory() );
     }
 
 }
