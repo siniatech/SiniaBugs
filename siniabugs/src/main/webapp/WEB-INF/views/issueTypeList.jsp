@@ -21,12 +21,18 @@
 				<th>Id</th>
 				<th>Short Code</th>
 				<th>Name</th>
+				<th>Created by</th>
+				<th>Last edited at</th>
+				<th>Last edited by</th>
 			</tr>
 			<c:forEach items="${issueTypeList}" var="issueType" varStatus="status">
 				<tr class="<c:if test="${status.count % 2 == 0}">even</c:if>">
 					<td>${issueType.id}</td>
 					<td>${issueType.shortCode}</td>
 					<td>${issueType.name}</td>
+					<td>${issueType.createdBy.firstName} ${issueType.createdBy.surname}</td>
+					<td>${issueType.start}</td>
+					<td>${issueType.editedBy.firstName} ${issueType.editedBy.surname}</td>
 				</tr>
 			</c:forEach>
 		</table>
