@@ -15,24 +15,24 @@
 </head>
 <body>
 
-	<c:if test="${fn:length(issueTypeList) > 0}">
+	<c:if test="${fn:length(issueTypes) > 0}">
 		<table cellpadding="5">
 			<tr class="even">
-				<th>Id</th>
-				<th>Short Code</th>
 				<th>Name</th>
+				<th>Short Code</th>
 				<th>Created by</th>
 				<th>Last edited at</th>
 				<th>Last edited by</th>
 			</tr>
-			<c:forEach items="${issueTypeList}" var="issueType" varStatus="status">
+			<c:forEach items="${issueTypes}" var="issueType" varStatus="status">
 				<tr class="<c:if test="${status.count % 2 == 0}">even</c:if>">
-					<td>${issueType.id}</td>
+					<td><a href="issueType?id=${issueType.id}">${issueType.name}</a></td>
 					<td>${issueType.shortCode}</td>
-					<td>${issueType.name}</td>
-					<td>${issueType.createdBy.firstName} ${issueType.createdBy.surname}</td>
+					<td><a href="user?id=${issueType.createdBy.id}">${issueType.createdBy.firstName}
+							${issueType.createdBy.surname}</a></td>
 					<td>${issueType.start}</td>
-					<td>${issueType.editedBy.firstName} ${issueType.editedBy.surname}</td>
+					<td><a href="user?id=${issueType.editedBy.id}">${issueType.editedBy.firstName}
+							${issueType.editedBy.surname}</a></td>
 				</tr>
 			</c:forEach>
 		</table>

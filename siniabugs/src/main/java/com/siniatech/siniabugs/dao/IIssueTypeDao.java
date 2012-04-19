@@ -6,5 +6,7 @@ import com.siniatech.siniabugs.model.IssueType;
 
 public interface IIssueTypeDao {
 
-    List<IssueType> listIssueTypes();
+    List<IssueType> getIssueTypes();
+
+    IssueType getIssueType( Long id );
 }

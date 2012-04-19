@@ -12,14 +12,11 @@ import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import com.siniatech.siniabugs.dao.IIssueDao;
-import com.siniatech.siniabugs.dao.IIssueTypeDao;
-import com.siniatech.siniabugs.dao.IssueDao;
-import com.siniatech.siniabugs.dao.IssueTypeDao;
 import com.siniatech.siniabugs.model.BugsUser;
 import com.siniatech.siniabugs.model.Issue;
 import com.siniatech.siniabugs.model.IssueType;
@@ -95,13 +92,8 @@ public class SiniaBugsConfig {
     }
 
     @Bean
-    IIssueDao issueDao() throws Exception {
-        return new IssueDao( sessionFactory() );
-    }
-
-    @Bean
-    IIssueTypeDao issueTypeDao() throws Exception {
-        return new IssueTypeDao( sessionFactory() );
+    HibernateTemplate hibernateTemplate() throws Exception {
+        return new HibernateTemplate( sessionFactory() );
     }
 
 }

@@ -2,17 +2,15 @@ package com.siniatech.siniabugs.dao;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.HibernateTemplate;
+
 import com.siniatech.siniabugs.model.Issue;
 
 public class IssueDao implements IIssueDao {
 
+    @Autowired
     private HibernateTemplate hibernateTemplate;
-
-    public IssueDao( SessionFactory sessionFactory ) {
-        this.hibernateTemplate = new HibernateTemplate( sessionFactory );
-    }
 
     public void saveIssue( Issue issue ) {
         hibernateTemplate.saveOrUpdate( issue );

@@ -2,21 +2,24 @@ package com.siniatech.siniabugs.dao;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import com.siniatech.siniabugs.model.IssueType;
+import com.siniatech.siniautils.collection.ListHelper;
 
 public class IssueTypeDao implements IIssueTypeDao {
 
+    @Autowired
     private HibernateTemplate hibernateTemplate;
 
-    public IssueTypeDao( SessionFactory sessionFactory ) {
-        this.hibernateTemplate = new HibernateTemplate( sessionFactory );
-    }
-
-    public List<IssueType> listIssueTypes() {
+    public List<IssueType> getIssueTypes() {
         return hibernateTemplate.find( "from IssueType" );
     }
 
+    public IssueType getIssueType( Long id ) {
+        List<IssueType> issueTypes = hibernateTemplate.find( "from IssueType where id = " + id );
+        assert issueTypes.size() == 1;
+        return ListHelper.head( issueTypes );
+    }
 }
