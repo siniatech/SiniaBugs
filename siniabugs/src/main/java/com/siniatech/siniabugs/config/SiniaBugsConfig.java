@@ -19,6 +19,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.siniatech.siniabugs.model.BugsUser;
 import com.siniatech.siniabugs.model.Issue;
+import com.siniatech.siniabugs.model.IssueStatus;
 import com.siniatech.siniabugs.model.IssueType;
 
 @Configuration
@@ -80,7 +81,7 @@ public class SiniaBugsConfig {
     SessionFactory sessionFactory() throws Exception {
         AnnotationSessionFactoryBean sessionFactoryBean = new AnnotationSessionFactoryBean();
         sessionFactoryBean.setAnnotatedPackages( new String[] { "com.siniatech.siniabugs.model" } );
-        sessionFactoryBean.setAnnotatedClasses( new Class[] { Issue.class, IssueType.class, BugsUser.class } );
+        sessionFactoryBean.setAnnotatedClasses( new Class[] { Issue.class, IssueType.class, BugsUser.class, IssueStatus.class } );
         sessionFactoryBean.setDataSource( dataSource() );
         sessionFactoryBean.setHibernateProperties( hibernateProperties() );
         sessionFactoryBean.afterPropertiesSet();

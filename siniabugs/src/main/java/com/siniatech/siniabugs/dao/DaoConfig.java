@@ -1,14 +1,8 @@
-package com.siniatech.siniabugs.config;
+package com.siniatech.siniabugs.dao;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.siniatech.siniabugs.dao.BugsUserDao;
-import com.siniatech.siniabugs.dao.IBugsUserDao;
-import com.siniatech.siniabugs.dao.IIssueDao;
-import com.siniatech.siniabugs.dao.IIssueTypeDao;
-import com.siniatech.siniabugs.dao.IssueDao;
-import com.siniatech.siniabugs.dao.IssueTypeDao;
 
 @Configuration
 public class DaoConfig {
@@ -21,6 +15,11 @@ public class DaoConfig {
     @Bean
     IIssueTypeDao issueTypeDao() {
         return new IssueTypeDao();
+    }
+
+    @Bean
+    IIssueStatusDao issueStatusDao() {
+        return new IssueStatusDao();
     }
 
     @Bean
