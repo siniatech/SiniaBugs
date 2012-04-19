@@ -1,0 +1,5 @@
+INSERT INTO PRIORITY VALUES(null, "P1", NOW(), null, 1, 1);
+INSERT INTO PRIORITY VALUES(null, "P2", NOW(), null, 1, 1);
+INSERT INTO PRIORITY VALUES(null, "P3", NOW(), null, 1, 1);
+INSERT INTO PRIORITY VALUES(null, "P4", NOW(), null, 1, 1);
+INSERT INTO PRIORITY VALUES(null, "P5", NOW(), null, 1, 1);
