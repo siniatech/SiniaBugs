@@ -7,19 +7,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "BUGS_USER")
-public class BugsUser implements IBugsUser {
+@Table(name = "PROJECT_RELEASE")
+public class Release {
 
     private Long id;
-    private Long uid;
-    private String firstName;
-    private String surname;
+    private String name;
     private Date start;
     private Date end;
+    private Date release_start;
+    private Date release_end;
     private BugsUser createdBy;
     private BugsUser editedBy;
 
@@ -34,32 +34,13 @@ public class BugsUser implements IBugsUser {
         this.id = id;
     }
 
-    @GeneratedValue
-    @Column(name = "uid")
-    public Long getUid() {
-        return uid;
+    @Column(name = "name")
+    public String getName() {
+        return name;
     }
 
-    public void setUid( Long uid ) {
-        this.uid = uid;
-    }
-
-    @Column(name = "first_name")
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName( String firstName ) {
-        this.firstName = firstName;
-    }
-
-    @Column(name = "surname")
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname( String surname ) {
-        this.surname = surname;
+    public void setName( String name ) {
+        this.name = name;
     }
 
     @Column(name = "start")
@@ -80,7 +61,25 @@ public class BugsUser implements IBugsUser {
         this.end = end;
     }
 
-    @OneToOne
+    @Column(name = "release_start")
+    public Date getReleaseStart() {
+        return release_start;
+    }
+
+    public void setReleaseStart( Date start ) {
+        this.release_start = start;
+    }
+
+    @Column(name = "release_end")
+    public Date getReleaseEnd() {
+        return release_end;
+    }
+
+    public void setReleaseEnd( Date end ) {
+        this.release_end = end;
+    }
+
+    @ManyToOne
     @JoinColumn(name = "created_by_id")
     public BugsUser getCreatedBy() {
         return createdBy;
@@ -90,7 +89,7 @@ public class BugsUser implements IBugsUser {
         this.createdBy = createdBy;
     }
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "edited_by_id")
     public BugsUser getEditedBy() {
         return editedBy;

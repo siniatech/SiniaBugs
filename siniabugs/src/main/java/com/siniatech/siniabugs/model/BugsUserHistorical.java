@@ -11,8 +11,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "BUGS_USER")
-public class BugsUser implements IBugsUser {
+@Table(name = "BUGS_USER_HISTORY")
+public class BugsUserHistorical implements IBugsUser {
 
     private Long id;
     private Long uid;
@@ -23,7 +23,6 @@ public class BugsUser implements IBugsUser {
     private BugsUser createdBy;
     private BugsUser editedBy;
 
-    @Id
     @GeneratedValue
     @Column(name = "id")
     public Long getId() {
@@ -34,6 +33,7 @@ public class BugsUser implements IBugsUser {
         this.id = id;
     }
 
+    @Id
     @GeneratedValue
     @Column(name = "uid")
     public Long getUid() {

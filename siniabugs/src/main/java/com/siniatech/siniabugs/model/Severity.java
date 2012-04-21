@@ -7,17 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "BUGS_USER")
-public class BugsUser implements IBugsUser {
+@Table(name = "SEVERITY")
+public class Severity {
 
     private Long id;
-    private Long uid;
-    private String firstName;
-    private String surname;
+    private String name;
     private Date start;
     private Date end;
     private BugsUser createdBy;
@@ -34,32 +32,13 @@ public class BugsUser implements IBugsUser {
         this.id = id;
     }
 
-    @GeneratedValue
-    @Column(name = "uid")
-    public Long getUid() {
-        return uid;
+    @Column(name = "name")
+    public String getName() {
+        return name;
     }
 
-    public void setUid( Long uid ) {
-        this.uid = uid;
-    }
-
-    @Column(name = "first_name")
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName( String firstName ) {
-        this.firstName = firstName;
-    }
-
-    @Column(name = "surname")
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname( String surname ) {
-        this.surname = surname;
+    public void setName( String name ) {
+        this.name = name;
     }
 
     @Column(name = "start")
@@ -80,7 +59,7 @@ public class BugsUser implements IBugsUser {
         this.end = end;
     }
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "created_by_id")
     public BugsUser getCreatedBy() {
         return createdBy;
@@ -90,7 +69,7 @@ public class BugsUser implements IBugsUser {
         this.createdBy = createdBy;
     }
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "edited_by_id")
     public BugsUser getEditedBy() {
         return editedBy;

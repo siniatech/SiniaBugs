@@ -65,36 +65,6 @@ public class SiniaBugsConfig {
         in.close();
     }
 
-    // FORneed to start hsqldb: java -cp hsqldb-2.2.8.jar org.hsqldb.server.Server --database.0 file:mydb --dbname.0 xdb
-    @Bean
-    DataSource dataSource() throws Exception {
-        Properties properties = siniaBugsProperties();
-        BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName( (String) properties.get( "db.driver" ) );
-        dataSource.setUrl( (String) properties.get( "db.url" ) );
-        dataSource.setUsername( (String) properties.get( "db.username" ) );
-        dataSource.setPassword( (String) properties.get( "db.password" ) );
-        return dataSource;
-    }
 
-    @Bean
-    SessionFactory sessionFactory() throws Exception {
-        AnnotationSessionFactoryBean sessionFactoryBean = new AnnotationSessionFactoryBean();
-        sessionFactoryBean.setAnnotatedPackages( new String[] { "com.siniatech.siniabugs.model" } );
-        sessionFactoryBean.setAnnotatedClasses( new Class[] { Issue.class, IssueType.class, BugsUser.class, IssueStatus.class } );
-        sessionFactoryBean.setDataSource( dataSource() );
-        sessionFactoryBean.setHibernateProperties( hibernateProperties() );
-        sessionFactoryBean.afterPropertiesSet();
-        return sessionFactoryBean.getObject();
-    }
-
-    private Properties hibernateProperties() throws Exception {
-        return siniaBugsProperties();
-    }
-
-    @Bean
-    HibernateTemplate hibernateTemplate() throws Exception {
-        return new HibernateTemplate( sessionFactory() );
-    }
 
 }
