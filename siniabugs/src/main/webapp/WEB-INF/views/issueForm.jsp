@@ -31,7 +31,7 @@
 		</table>
 	</form:form>
 	<c:if test="${fn:length(issueList) > 0}">
-		<table cellpadding="5">
+		<table>
 			<tr class="even">
 				<th>Id</th>
 				<th>Title</th>

@@ -6,21 +6,10 @@ import java.io.InputStream;
 import java.util.Comparator;
 import java.util.Properties;
 
-import javax.sql.DataSource;
-
-import org.apache.commons.dbcp.BasicDataSource;
-import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.orm.hibernate3.HibernateTemplate;
-import org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
-
-import com.siniatech.siniabugs.model.BugsUser;
-import com.siniatech.siniabugs.model.Issue;
-import com.siniatech.siniabugs.model.IssueStatus;
-import com.siniatech.siniabugs.model.IssueType;
 
 @Configuration
 public class SiniaBugsConfig {
@@ -64,7 +53,5 @@ public class SiniaBugsConfig {
         prop.load( in );
         in.close();
     }
-
-
 
 }

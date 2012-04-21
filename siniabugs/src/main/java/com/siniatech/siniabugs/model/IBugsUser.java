@@ -1,8 +1,6 @@
 package com.siniatech.siniabugs.model;
 
-import java.sql.Date;
-
-public interface IBugsUser {
+public interface IBugsUser extends IModelObject {
 
     Long getId();
 
@@ -19,21 +17,5 @@ public interface IBugsUser {
     String getSurname();
 
     void setSurname( String surname );
-
-    Date getStart();
-
-    void setStart( Date start );
-
-    Date getEnd();
-
-    void setEnd( Date end );
-
-    BugsUser getCreatedBy();
-
-    void setCreatedBy( BugsUser createdBy );
-
-    BugsUser getEditedBy();
-
-    void setEditedBy( BugsUser editedBy );
 
 }

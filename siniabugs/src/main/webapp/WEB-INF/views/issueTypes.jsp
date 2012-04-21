@@ -16,7 +16,7 @@
 <body>
 
 	<c:if test="${fn:length(issueTypes) > 0}">
-		<table cellpadding="5">
+		<table>
 			<tr class="even">
 				<th>Name</th>
 				<th>Short Code</th>
