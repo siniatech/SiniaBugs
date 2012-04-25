@@ -19,7 +19,7 @@
 	<br /> ${user.surname}
 	<br /> ${user.createdBy.firstName}
 	<br /> ${user.createdBy.surname}
-	<br /> ${user.start}
+	<br /> ${user.versionStart}
 	<br /> ${user.editedBy.firstName}
 	<br /> ${user.editedBy.surname}
 	<br />

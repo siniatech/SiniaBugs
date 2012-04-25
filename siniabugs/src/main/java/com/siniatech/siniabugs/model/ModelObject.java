@@ -1,16 +1,6 @@
 package com.siniatech.siniabugs.model;
 
-import java.sql.Date;
-
 abstract public class ModelObject {
-
-    abstract public Date getStart();
-
-    abstract public void setStart( Date start );
-
-    abstract public Date getEnd();
-
-    abstract public void setEnd( Date end );
 
     abstract public BugsUser getCreatedBy();
 
@@ -20,4 +10,21 @@ abstract public class ModelObject {
 
     abstract public void setEditedBy( BugsUser editedBy );
 
+    public IBugsUser getCreator() {
+        return getCreatedBy();
+    }
+
+    public void setCreator( IBugsUser creator ) {
+        assert !creator.isHistorical();
+        setCreatedBy( (BugsUser) creator );
+    }
+
+    public IBugsUser getLastEditor() {
+        return getEditedBy();
+    }
+
+    public void setLastEditor( IBugsUser lastEditor ) {
+        assert !lastEditor.isHistorical();
+        setCreatedBy( (BugsUser) lastEditor );
+    }
 }

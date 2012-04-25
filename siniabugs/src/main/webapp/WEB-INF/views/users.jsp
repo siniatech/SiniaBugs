@@ -29,7 +29,7 @@
 							${user.surname}</a></td>
 					<td><a href="user?id=${user.createdBy.id}">${user.createdBy.firstName}
 							${user.createdBy.surname}</a></td>
-					<td>${user.start}</td>
+					<td>${user.versionStart}</td>
 					<td><a href="user?id=${user.editedBy.id}">${user.editedBy.firstName}
 							${user.editedBy.surname}</a></td>
 				</tr>

@@ -1,7 +1,5 @@
 package com.siniatech.siniabugs.model;
 
-import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +7,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
 
 @Entity
 @Table(name = "BUGS_USER")
@@ -18,8 +20,8 @@ public class BugsUser extends ModelObject implements IBugsUser {
     private Long uid;
     private String firstName;
     private String surname;
-    private Date start;
-    private Date end;
+    private DateTime start;
+    private DateTime end;
     private BugsUser createdBy;
     private BugsUser editedBy;
 
@@ -62,25 +64,23 @@ public class BugsUser extends ModelObject implements IBugsUser {
         this.surname = surname;
     }
 
-    @Override
     @Column(name = "start")
-    public Date getStart() {
+    @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
+    public DateTime getVersionStart() {
         return start;
     }
 
-    @Override
-    public void setStart( Date start ) {
+    public void setVersionStart( DateTime start ) {
         this.start = start;
     }
 
-    @Override
     @Column(name = "end")
-    public Date getEnd() {
+    @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
+    public DateTime getVersionEnd() {
         return end;
     }
 
-    @Override
-    public void setEnd( Date end ) {
+    public void setVersionEnd( DateTime end ) {
         this.end = end;
     }
 
@@ -108,9 +108,9 @@ public class BugsUser extends ModelObject implements IBugsUser {
         this.editedBy = editedBy;
     }
 
+    @Transient
     public boolean isHistorical() {
         return false;
     }
-
 
 }
