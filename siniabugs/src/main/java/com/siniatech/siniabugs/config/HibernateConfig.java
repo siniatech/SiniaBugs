@@ -12,13 +12,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean;
 
-import com.siniatech.siniabugs.model.BugsUser;
-import com.siniatech.siniabugs.model.Issue;
-import com.siniatech.siniabugs.model.IssueStatus;
-import com.siniatech.siniabugs.model.IssueType;
-import com.siniatech.siniabugs.model.Priority;
-import com.siniatech.siniabugs.model.Release;
-import com.siniatech.siniabugs.model.Severity;
+import com.siniatech.siniabugs.model.current.BugsUser;
+import com.siniatech.siniabugs.model.current.Issue;
+import com.siniatech.siniabugs.model.current.IssueStatus;
+import com.siniatech.siniabugs.model.current.IssueType;
+import com.siniatech.siniabugs.model.current.Priority;
+import com.siniatech.siniabugs.model.current.Release;
+import com.siniatech.siniabugs.model.current.Severity;
 
 @Configuration
 public class HibernateConfig {

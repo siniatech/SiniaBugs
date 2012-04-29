@@ -28,7 +28,7 @@
 					<td><a href="issueStatus?id=${issueStatus.id}">${issueStatus.name}</a></td>
 					<td><a href="user?id=${issueStatus.createdBy.id}">${issueStatus.createdBy.firstName}
 							${issueStatus.createdBy.surname}</a></td>
-					<td>${issueStatus.start}</td>
+					<td>${issueStatus.versionStart}</td>
 					<td><a href="user?id=${issueStatus.editedBy.id}">${issueStatus.editedBy.firstName}
 							${issueStatus.editedBy.surname}</a></td>
 				</tr>

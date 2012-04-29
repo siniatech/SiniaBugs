@@ -18,7 +18,7 @@
 	${issueStatus.name}
 	<br /> ${issueStatus.createdBy.firstName}
 	<br /> ${issueStatus.createdBy.surname}
-	<br /> ${issueStatus.start}
+	<br /> ${issueStatus.versionStart}
 	<br /> ${issueStatus.editedBy.firstName}
 	<br /> ${issueStatus.editedBy.surname}
 	<br />

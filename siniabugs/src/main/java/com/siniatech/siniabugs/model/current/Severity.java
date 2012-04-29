@@ -1,4 +1,4 @@
-package com.siniatech.siniabugs.model;
+package com.siniatech.siniabugs.model.current;
 
 import java.sql.Date;
 
@@ -11,8 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ISSUE_STATUS")
-public class IssueStatus {
+@Table(name = "SEVERITY")
+public class Severity {
 
     private Long id;
     private String name;

@@ -2,11 +2,11 @@ package com.siniatech.siniabugs.dao;
 
 import java.util.List;
 
-import com.siniatech.siniabugs.model.IssueStatus;
+import com.siniatech.siniabugs.model.api.IIssueStatus;
 
 public interface IIssueStatusDao {
 
-    List<IssueStatus> getIssueStatuses();
+    List<IIssueStatus> getIssueStatuses();
 
-    IssueStatus getIssueStatus( Long id );
+    IIssueStatus getIssueStatus( Long id );
 }

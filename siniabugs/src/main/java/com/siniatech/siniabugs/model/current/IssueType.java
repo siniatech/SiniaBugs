@@ -1,4 +1,4 @@
-package com.siniatech.siniabugs.model;
+package com.siniatech.siniabugs.model.current;
 
 import java.sql.Date;
 
@@ -11,10 +11,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "SEVERITY")
-public class Severity {
+@Table(name = "ISSUE_TYPE")
+public class IssueType {
 
     private Long id;
+    private String shortCode;
     private String name;
     private Date start;
     private Date end;
@@ -30,6 +31,15 @@ public class Severity {
 
     public void setId( Long id ) {
         this.id = id;
+    }
+
+    @Column(name = "short_code")
+    public String getShortCode() {
+        return shortCode;
+    }
+
+    public void setShortCode( String shortCode ) {
+        this.shortCode = shortCode;
     }
 
     @Column(name = "name")

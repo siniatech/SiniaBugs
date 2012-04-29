@@ -1,4 +1,4 @@
-package com.siniatech.siniabugs.model;
+package com.siniatech.siniabugs.model.current;
 
 import java.sql.Date;
 

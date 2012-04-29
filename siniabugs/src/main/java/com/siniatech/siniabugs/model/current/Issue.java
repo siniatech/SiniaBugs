@@ -1,4 +1,4 @@
-package com.siniatech.siniabugs.model;
+package com.siniatech.siniabugs.model.current;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -2,7 +2,7 @@ package com.siniatech.siniabugs.dao;
 
 import java.util.List;
 
-import com.siniatech.siniabugs.model.Issue;
+import com.siniatech.siniabugs.model.current.Issue;
 
 public interface IIssueDao {
 

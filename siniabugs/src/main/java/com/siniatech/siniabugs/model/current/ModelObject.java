@@ -1,4 +1,6 @@
-package com.siniatech.siniabugs.model;
+package com.siniatech.siniabugs.model.current;
+
+import com.siniatech.siniabugs.model.api.IBugsUser;
 
 abstract public class ModelObject {
 

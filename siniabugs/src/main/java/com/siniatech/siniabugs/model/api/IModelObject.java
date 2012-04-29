@@ -1,8 +1,9 @@
-package com.siniatech.siniabugs.model;
+package com.siniatech.siniabugs.model.api;
 
 import org.joda.time.DateTime;
 
-public interface IModelObject {
+
+public interface IModelObject extends INamed {
 
     Long getId();
 
@@ -29,5 +30,7 @@ public interface IModelObject {
     IBugsUser getLastEditor();
 
     void setLastEditor( IBugsUser lastEditor );
+    
+    String getName();
 
 }

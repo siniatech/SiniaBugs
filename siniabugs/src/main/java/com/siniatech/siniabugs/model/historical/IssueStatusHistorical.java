@@ -1,31 +1,33 @@
-package com.siniatech.siniabugs.model;
+package com.siniatech.siniabugs.model.historical;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
+import com.siniatech.siniabugs.model.api.IIssueStatus;
+import com.siniatech.siniabugs.model.current.BugsUser;
+import com.siniatech.siniabugs.model.current.ModelObject;
+
 @Entity
-@Table(name = "BUGS_USER")
-public class BugsUser extends ModelObject implements IBugsUser {
+@Table(name = "ISSUE_STATUS")
+public class IssueStatusHistorical extends ModelObject implements IIssueStatus {
 
     private Long id;
-    private Long uid;
-    private String firstName;
-    private String surname;
+    private String name;
     private DateTime start;
     private DateTime end;
     private BugsUser createdBy;
     private BugsUser editedBy;
+    private Long uid;
 
-    @Id
     @GeneratedValue
     @Column(name = "id")
     public Long getId() {
@@ -35,7 +37,8 @@ public class BugsUser extends ModelObject implements IBugsUser {
     public void setId( Long id ) {
         this.id = id;
     }
-
+    
+    @Id
     @GeneratedValue
     @Column(name = "uid")
     public Long getUid() {
@@ -46,22 +49,14 @@ public class BugsUser extends ModelObject implements IBugsUser {
         this.uid = uid;
     }
 
-    @Column(name = "first_name")
-    public String getFirstName() {
-        return firstName;
+
+    @Column(name = "name")
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName( String firstName ) {
-        this.firstName = firstName;
-    }
-
-    @Column(name = "surname")
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname( String surname ) {
-        this.surname = surname;
+    public void setName( String name ) {
+        this.name = name;
     }
 
     @Column(name = "start")
@@ -85,7 +80,7 @@ public class BugsUser extends ModelObject implements IBugsUser {
     }
 
     @Override
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "created_by_id")
     public BugsUser getCreatedBy() {
         return createdBy;
@@ -97,7 +92,7 @@ public class BugsUser extends ModelObject implements IBugsUser {
     }
 
     @Override
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "edited_by_id")
     public BugsUser getEditedBy() {
         return editedBy;
@@ -110,7 +105,7 @@ public class BugsUser extends ModelObject implements IBugsUser {
 
     @Transient
     public boolean isHistorical() {
-        return false;
+        return true;
     }
 
 }

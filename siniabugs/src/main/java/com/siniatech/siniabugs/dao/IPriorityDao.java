@@ -2,7 +2,7 @@ package com.siniatech.siniabugs.dao;
 
 import java.util.List;
 
-import com.siniatech.siniabugs.model.Priority;
+import com.siniatech.siniabugs.model.current.Priority;
 
 public interface IPriorityDao {
 

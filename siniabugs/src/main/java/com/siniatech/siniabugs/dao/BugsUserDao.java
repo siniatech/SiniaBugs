@@ -6,8 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
-import com.siniatech.siniabugs.model.BugsUser;
-import com.siniatech.siniabugs.model.IBugsUser;
+import com.siniatech.siniabugs.model.api.IBugsUser;
 import com.siniatech.siniautils.collection.ListHelper;
 
 public class BugsUserDao implements IBugsUserDao {
@@ -15,7 +14,7 @@ public class BugsUserDao implements IBugsUserDao {
     @Autowired
     private HibernateTemplate hibernateTemplate;
 
-    public List<BugsUser> getBugsUsers() {
+    public List<IBugsUser> getBugsUsers() {
         return hibernateTemplate.find( "from BugsUser" );
     }
 
