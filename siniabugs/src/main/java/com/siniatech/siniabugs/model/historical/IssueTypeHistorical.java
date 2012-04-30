@@ -1,4 +1,4 @@
-package com.siniatech.siniabugs.model.current;
+package com.siniatech.siniabugs.model.historical;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,10 +13,12 @@ import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 import com.siniatech.siniabugs.model.api.IIssueType;
+import com.siniatech.siniabugs.model.current.BugsUser;
+import com.siniatech.siniabugs.model.current.ModelObject;
 
 @Entity
-@Table(name = "ISSUE_TYPE")
-public class IssueType extends ModelObject implements IIssueType {
+@Table(name = "ISSUE_TYPE_HISTORY")
+public class IssueTypeHistorical extends ModelObject implements IIssueType {
 
     private Long id;
     private String shortCode;
@@ -27,7 +29,6 @@ public class IssueType extends ModelObject implements IIssueType {
     private BugsUser editedBy;
     private Long uid;
 
-    @Id
     @GeneratedValue
     @Column(name = "id")
     public Long getId() {
@@ -37,7 +38,8 @@ public class IssueType extends ModelObject implements IIssueType {
     public void setId( Long id ) {
         this.id = id;
     }
-    
+
+    @Id
     @GeneratedValue
     @Column(name = "uid")
     public Long getUid() {
@@ -112,7 +114,7 @@ public class IssueType extends ModelObject implements IIssueType {
 
     @Transient
     public boolean isHistorical() {
-        return false;
+        return true;
     }
 
 }

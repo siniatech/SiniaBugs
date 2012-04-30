@@ -17,7 +17,7 @@ import com.siniatech.siniabugs.model.current.BugsUser;
 import com.siniatech.siniabugs.model.current.ModelObject;
 
 @Entity
-@Table(name = "ISSUE_STATUS")
+@Table(name = "ISSUE_STATUS_HISTORY")
 public class IssueStatusHistorical extends ModelObject implements IIssueStatus {
 
     private Long id;
@@ -37,7 +37,7 @@ public class IssueStatusHistorical extends ModelObject implements IIssueStatus {
     public void setId( Long id ) {
         this.id = id;
     }
-    
+
     @Id
     @GeneratedValue
     @Column(name = "uid")
@@ -48,7 +48,6 @@ public class IssueStatusHistorical extends ModelObject implements IIssueStatus {
     public void setUid( Long uid ) {
         this.uid = uid;
     }
-
 
     @Column(name = "name")
     public String getName() {

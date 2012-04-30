@@ -19,7 +19,7 @@
 	<br /> ${issueType.shortCode}
 	<br /> ${issueType.createdBy.firstName}
 	<br /> ${issueType.createdBy.surname}
-	<br /> ${issueType.start}
+	<br /> ${issueType.versionStart}
 	<br /> ${issueType.editedBy.firstName}
 	<br /> ${issueType.editedBy.surname}
 	<br />

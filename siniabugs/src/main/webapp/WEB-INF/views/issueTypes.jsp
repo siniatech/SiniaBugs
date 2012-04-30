@@ -30,7 +30,7 @@
 					<td>${issueType.shortCode}</td>
 					<td><a href="user?id=${issueType.createdBy.id}">${issueType.createdBy.firstName}
 							${issueType.createdBy.surname}</a></td>
-					<td>${issueType.start}</td>
+					<td>${issueType.versionStart}</td>
 					<td><a href="user?id=${issueType.editedBy.id}">${issueType.editedBy.firstName}
 							${issueType.editedBy.surname}</a></td>
 				</tr>
