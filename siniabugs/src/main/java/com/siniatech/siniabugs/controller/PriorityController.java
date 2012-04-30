@@ -7,29 +7,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.siniatech.siniabugs.dao.api.IIssueTypeDao;
+import com.siniatech.siniabugs.dao.api.IPriorityDao;
 
 @Controller
-public class IssueTypeController {
+public class PriorityController {
 
     @Autowired
-    private IIssueTypeDao issueTypeDao;
+    private IPriorityDao priorityDao;
 
-    @RequestMapping(value = "/issueType", method = RequestMethod.GET)
-    public String getIssueType( @RequestParam(value = "id") String id, Model model ) {
+    @RequestMapping(value = "/priority", method = RequestMethod.GET)
+    public String getPriority( @RequestParam(value = "id") String id, Model model ) {
         try {
             long longId = Long.parseLong( id );
-            model.addAttribute( "issueType", issueTypeDao.getIssueType( longId ) );
-            return "issueType";
+            model.addAttribute( "priority", priorityDao.getPriority( longId ) );
+            return "priority";
         } catch ( NumberFormatException e ) {
-            return "issueType";
+            return "priority";
         }
     }
 
-    @RequestMapping(value = "/issueTypes", method = RequestMethod.GET)
+    @RequestMapping(value = "/priorities", method = RequestMethod.GET)
     public String getIssuesTypes( Model model ) {
-        model.addAttribute( "issueTypes", issueTypeDao.getIssueTypes() );
-        return "issueTypes";
+        model.addAttribute( "priorities", priorityDao.getPriorities() );
+        return "priorities";
     }
 
 }

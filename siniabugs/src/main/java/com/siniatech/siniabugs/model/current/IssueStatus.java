@@ -37,7 +37,6 @@ public class IssueStatus extends ModelObject implements IIssueStatus {
         this.id = id;
     }
 
-    @GeneratedValue
     @Column(name = "uid")
     public Long getUid() {
         return uid;

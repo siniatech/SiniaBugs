@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.siniatech.siniabugs.dao.IIssueDao;
+import com.siniatech.siniabugs.dao.api.IIssueDao;
 import com.siniatech.siniabugs.model.current.Issue;
 
 @Controller

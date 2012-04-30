@@ -38,7 +38,6 @@ public class IssueType extends ModelObject implements IIssueType {
         this.id = id;
     }
     
-    @GeneratedValue
     @Column(name = "uid")
     public Long getUid() {
         return uid;

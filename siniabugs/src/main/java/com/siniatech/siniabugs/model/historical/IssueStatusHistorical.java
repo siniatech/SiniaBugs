@@ -2,7 +2,6 @@ package com.siniatech.siniabugs.model.historical;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,7 +27,6 @@ public class IssueStatusHistorical extends ModelObject implements IIssueStatus {
     private BugsUser editedBy;
     private Long uid;
 
-    @GeneratedValue
     @Column(name = "id")
     public Long getId() {
         return id;
@@ -39,7 +37,6 @@ public class IssueStatusHistorical extends ModelObject implements IIssueStatus {
     }
 
     @Id
-    @GeneratedValue
     @Column(name = "uid")
     public Long getUid() {
         return uid;

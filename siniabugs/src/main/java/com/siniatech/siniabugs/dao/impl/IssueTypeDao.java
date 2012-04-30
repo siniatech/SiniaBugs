@@ -1,10 +1,11 @@
-package com.siniatech.siniabugs.dao;
+package com.siniatech.siniabugs.dao.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
+import com.siniatech.siniabugs.dao.api.IIssueTypeDao;
 import com.siniatech.siniabugs.model.api.IIssueType;
 import com.siniatech.siniautils.collection.ListHelper;
 

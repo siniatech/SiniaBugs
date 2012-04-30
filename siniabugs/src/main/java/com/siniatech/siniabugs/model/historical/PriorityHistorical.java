@@ -11,16 +11,15 @@ import javax.persistence.Transient;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
-import com.siniatech.siniabugs.model.api.IIssueType;
+import com.siniatech.siniabugs.model.api.IPriority;
 import com.siniatech.siniabugs.model.current.BugsUser;
 import com.siniatech.siniabugs.model.current.ModelObject;
 
 @Entity
-@Table(name = "ISSUE_TYPE_HISTORY")
-public class IssueTypeHistorical extends ModelObject implements IIssueType {
+@Table(name = "PRIORITY_HISTORY")
+public class PriorityHistorical extends ModelObject implements IPriority {
 
     private Long id;
-    private String shortCode;
     private String name;
     private DateTime start;
     private DateTime end;
@@ -45,15 +44,6 @@ public class IssueTypeHistorical extends ModelObject implements IIssueType {
 
     public void setUid( Long uid ) {
         this.uid = uid;
-    }
-
-    @Column(name = "short_code")
-    public String getShortCode() {
-        return shortCode;
-    }
-
-    public void setShortCode( String shortCode ) {
-        this.shortCode = shortCode;
     }
 
     @Column(name = "name")

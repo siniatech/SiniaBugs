@@ -2,7 +2,6 @@ package com.siniatech.siniabugs.model.historical;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -29,7 +28,6 @@ public class BugsUserHistorical extends ModelObject implements IBugsUser {
     private BugsUser createdBy;
     private BugsUser editedBy;
 
-    @GeneratedValue
     @Column(name = "id")
     public Long getId() {
         return id;
@@ -40,7 +38,6 @@ public class BugsUserHistorical extends ModelObject implements IBugsUser {
     }
 
     @Id
-    @GeneratedValue
     @Column(name = "uid")
     public Long getUid() {
         return uid;
@@ -116,7 +113,7 @@ public class BugsUserHistorical extends ModelObject implements IBugsUser {
     public boolean isHistorical() {
         return true;
     }
-    
+
     @Transient
     public String getName() {
         return String.format( "%s %s", firstName, surname );

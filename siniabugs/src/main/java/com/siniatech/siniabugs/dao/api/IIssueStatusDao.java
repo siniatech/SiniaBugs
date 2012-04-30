@@ -1,4 +1,4 @@
-package com.siniatech.siniabugs.dao;
+package com.siniatech.siniabugs.dao.api;
 
 import java.util.List;
 

@@ -38,7 +38,6 @@ public class BugsUser extends ModelObject implements IBugsUser {
         this.id = id;
     }
 
-    @GeneratedValue
     @Column(name = "uid")
     public Long getUid() {
         return uid;

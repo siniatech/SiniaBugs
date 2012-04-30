@@ -1,4 +1,4 @@
-package com.siniatech.siniabugs.dao;
+package com.siniatech.siniabugs.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
+import com.siniatech.siniabugs.dao.api.IBugsUserDao;
 import com.siniatech.siniabugs.model.api.IBugsUser;
 import com.siniatech.siniautils.collection.ListHelper;
 
