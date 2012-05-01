@@ -1,8 +1,7 @@
-package com.siniatech.siniabugs.model.current;
+package com.siniatech.siniabugs.model.historical;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -14,10 +13,11 @@ import org.joda.time.DateTime;
 
 import com.siniatech.siniabugs.model.abs.ModelObject;
 import com.siniatech.siniabugs.model.api.ISeverity;
+import com.siniatech.siniabugs.model.current.BugsUser;
 
 @Entity
-@Table(name = "SEVERITY")
-public class Severity extends ModelObject implements ISeverity {
+@Table(name = "SEVERITY_HISTORY")
+public class SeverityHistorical extends ModelObject implements ISeverity {
 
     private Long id;
     private String name;
@@ -27,8 +27,6 @@ public class Severity extends ModelObject implements ISeverity {
     private BugsUser editedBy;
     private Long uid;
 
-    @Id
-    @GeneratedValue
     @Column(name = "id")
     public Long getId() {
         return id;
@@ -38,6 +36,7 @@ public class Severity extends ModelObject implements ISeverity {
         this.id = id;
     }
 
+    @Id
     @Column(name = "uid")
     public Long getUid() {
         return uid;
@@ -102,7 +101,7 @@ public class Severity extends ModelObject implements ISeverity {
 
     @Transient
     public boolean isHistorical() {
-        return false;
+        return true;
     }
 
 }

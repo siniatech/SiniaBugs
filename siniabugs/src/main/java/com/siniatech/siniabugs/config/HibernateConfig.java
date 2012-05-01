@@ -17,8 +17,16 @@ import com.siniatech.siniabugs.model.current.Issue;
 import com.siniatech.siniabugs.model.current.IssueStatus;
 import com.siniatech.siniabugs.model.current.IssueType;
 import com.siniatech.siniabugs.model.current.Priority;
+import com.siniatech.siniabugs.model.current.Project;
 import com.siniatech.siniabugs.model.current.Release;
 import com.siniatech.siniabugs.model.current.Severity;
+import com.siniatech.siniabugs.model.historical.BugsUserHistorical;
+import com.siniatech.siniabugs.model.historical.IssueStatusHistorical;
+import com.siniatech.siniabugs.model.historical.IssueTypeHistorical;
+import com.siniatech.siniabugs.model.historical.PriorityHistorical;
+import com.siniatech.siniabugs.model.historical.ProjectHistorical;
+import com.siniatech.siniabugs.model.historical.ReleaseHistorical;
+import com.siniatech.siniabugs.model.historical.SeverityHistorical;
 
 @Configuration
 public class HibernateConfig {
@@ -41,8 +49,16 @@ public class HibernateConfig {
     @Bean
     SessionFactory sessionFactory() throws Exception {
         AnnotationSessionFactoryBean sessionFactoryBean = new AnnotationSessionFactoryBean();
-        sessionFactoryBean.setAnnotatedPackages( new String[] { "com.siniatech.siniabugs.model" } );
-        sessionFactoryBean.setAnnotatedClasses( new Class[] { Issue.class, IssueType.class, BugsUser.class, IssueStatus.class, Release.class, Severity.class, Priority.class } );
+        sessionFactoryBean.setAnnotatedPackages( new String[] { //
+            "com.siniatech.siniabugs.model.current", //
+                "com.siniatech.siniabugs.model.historical" } );
+        sessionFactoryBean.setAnnotatedClasses( new Class[] { //
+            Issue.class, IssueType.class, BugsUser.class, //
+                IssueStatus.class, Release.class, Severity.class, //
+                Priority.class, Project.class, IssueTypeHistorical.class, //
+                BugsUserHistorical.class, IssueStatusHistorical.class, //
+                ReleaseHistorical.class, SeverityHistorical.class, //
+                PriorityHistorical.class, ProjectHistorical.class } );
         sessionFactoryBean.setDataSource( dataSource() );
         sessionFactoryBean.setHibernateProperties( hibernateProperties() );
         sessionFactoryBean.afterPropertiesSet();

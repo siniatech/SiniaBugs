@@ -11,11 +11,11 @@
 	background-color: silver;
 }
 </style>
-<title>Priorities</title>
+<title>Severities</title>
 </head>
 <body>
 
-	<c:if test="${fn:length(priorities) > 0}">
+	<c:if test="${fn:length(severities) > 0}">
 		<table>
 			<tr class="even">
 				<th>Name</th>
@@ -23,14 +23,14 @@
 				<th>Last edited at</th>
 				<th>Last edited by</th>
 			</tr>
-			<c:forEach items="${priorities}" var="priority" varStatus="status">
+			<c:forEach items="${severities}" var="severity" varStatus="status">
 				<tr class="<c:if test="${status.count % 2 == 0}">even</c:if>">
-					<td><a href="priority?id=${priority.id}">${priority.name}</a></td>
-					<td><a href="user?id=${priority.createdBy.id}">${priority.createdBy.firstName}
-							${priority.createdBy.surname}</a></td>
-					<td>${priority.versionStart}</td>
-					<td><a href="user?id=${priority.editedBy.id}">${priority.editedBy.firstName}
-							${priority.editedBy.surname}</a></td>
+					<td><a href="severity?id=${severity.id}">${severity.name}</a></td>
+					<td><a href="user?id=${severity.createdBy.id}">${severity.createdBy.firstName}
+							${severity.createdBy.surname}</a></td>
+					<td>${severity.versionStart}</td>
+					<td><a href="user?id=${severity.editedBy.id}">${severity.editedBy.firstName}
+							${severity.editedBy.surname}</a></td>
 				</tr>
 			</c:forEach>
 		</table>

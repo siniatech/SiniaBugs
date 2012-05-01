@@ -11,26 +11,30 @@
 	background-color: silver;
 }
 </style>
-<title>Priorities</title>
+<title>Releases</title>
 </head>
 <body>
 
-	<c:if test="${fn:length(priorities) > 0}">
+	<c:if test="${fn:length(releases) > 0}">
 		<table>
 			<tr class="even">
 				<th>Name</th>
+				<th>Release start</th>
+				<th>Release end</th>
 				<th>Created by</th>
 				<th>Last edited at</th>
 				<th>Last edited by</th>
 			</tr>
-			<c:forEach items="${priorities}" var="priority" varStatus="status">
+			<c:forEach items="${releases}" var="release" varStatus="status">
 				<tr class="<c:if test="${status.count % 2 == 0}">even</c:if>">
-					<td><a href="priority?id=${priority.id}">${priority.name}</a></td>
-					<td><a href="user?id=${priority.createdBy.id}">${priority.createdBy.firstName}
-							${priority.createdBy.surname}</a></td>
-					<td>${priority.versionStart}</td>
-					<td><a href="user?id=${priority.editedBy.id}">${priority.editedBy.firstName}
-							${priority.editedBy.surname}</a></td>
+					<td><a href="release?id=${release.id}">${release.name}</a></td>
+					<td>${release.releaseStart}</td>
+					<td>${release.releaseEnd}</td>
+					<td><a href="user?id=${release.createdBy.id}">${release.createdBy.firstName}
+							${release.createdBy.surname}</a></td>
+					<td>${release.versionStart}</td>
+					<td><a href="user?id=${release.editedBy.id}">${release.editedBy.firstName}
+							${release.editedBy.surname}</a></td>
 				</tr>
 			</c:forEach>
 		</table>

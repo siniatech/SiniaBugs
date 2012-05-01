@@ -1,8 +1,7 @@
-package com.siniatech.siniabugs.model.current;
+package com.siniatech.siniabugs.model.historical;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -14,10 +13,17 @@ import org.joda.time.DateTime;
 
 import com.siniatech.siniabugs.model.abs.AbstractIssue;
 import com.siniatech.siniabugs.model.api.IIssue;
+import com.siniatech.siniabugs.model.current.BugsUser;
+import com.siniatech.siniabugs.model.current.IssueStatus;
+import com.siniatech.siniabugs.model.current.IssueType;
+import com.siniatech.siniabugs.model.current.Priority;
+import com.siniatech.siniabugs.model.current.Project;
+import com.siniatech.siniabugs.model.current.Release;
+import com.siniatech.siniabugs.model.current.Severity;
 
 @Entity
-@Table(name = "ISSUE")
-public class Issue extends AbstractIssue implements IIssue {
+@Table(name = "ISSUE_HISTORY")
+public class IssueHistorical extends AbstractIssue implements IIssue {
 
     private Long id;
     private String name;
@@ -37,8 +43,6 @@ public class Issue extends AbstractIssue implements IIssue {
     private IssueType issueType;
     private IssueStatus issueStatus;
 
-    @Id
-    @GeneratedValue
     @Column(name = "id")
     public Long getId() {
         return id;
@@ -48,6 +52,7 @@ public class Issue extends AbstractIssue implements IIssue {
         this.id = id;
     }
 
+    @Id
     @Column(name = "uid")
     public Long getUid() {
         return uid;
@@ -205,7 +210,7 @@ public class Issue extends AbstractIssue implements IIssue {
 
     @Transient
     public boolean isHistorical() {
-        return false;
+        return true;
     }
 
     @Column(name = "estimate")

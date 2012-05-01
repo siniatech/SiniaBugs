@@ -1,8 +1,7 @@
-package com.siniatech.siniabugs.model.current;
+package com.siniatech.siniabugs.model.historical;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -13,22 +12,23 @@ import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 import com.siniatech.siniabugs.model.abs.ModelObject;
-import com.siniatech.siniabugs.model.api.ISeverity;
+import com.siniatech.siniabugs.model.api.IRelease;
+import com.siniatech.siniabugs.model.current.BugsUser;
 
 @Entity
-@Table(name = "SEVERITY")
-public class Severity extends ModelObject implements ISeverity {
+@Table(name = "PROJECT_RELEASE_HISTORY")
+public class ReleaseHistorical extends ModelObject implements IRelease {
 
     private Long id;
     private String name;
     private DateTime start;
     private DateTime end;
+    private DateTime release_start;
+    private DateTime release_end;
     private BugsUser createdBy;
     private BugsUser editedBy;
     private Long uid;
 
-    @Id
-    @GeneratedValue
     @Column(name = "id")
     public Long getId() {
         return id;
@@ -38,6 +38,7 @@ public class Severity extends ModelObject implements ISeverity {
         this.id = id;
     }
 
+    @Id
     @Column(name = "uid")
     public Long getUid() {
         return uid;
@@ -76,6 +77,26 @@ public class Severity extends ModelObject implements ISeverity {
         this.end = end;
     }
 
+    @Column(name = "release_start")
+    @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
+    public DateTime getReleaseStart() {
+        return release_start;
+    }
+
+    public void setReleaseStart( DateTime start ) {
+        this.release_start = start;
+    }
+
+    @Column(name = "release_end")
+    @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
+    public DateTime getReleaseEnd() {
+        return release_end;
+    }
+
+    public void setReleaseEnd( DateTime end ) {
+        this.release_end = end;
+    }
+
     @Override
     @ManyToOne
     @JoinColumn(name = "created_by_id")
@@ -102,7 +123,7 @@ public class Severity extends ModelObject implements ISeverity {
 
     @Transient
     public boolean isHistorical() {
-        return false;
+        return true;
     }
 
 }

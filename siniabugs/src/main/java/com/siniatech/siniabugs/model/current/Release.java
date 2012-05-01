@@ -1,7 +1,5 @@
 package com.siniatech.siniabugs.model.current;
 
-import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,19 +7,27 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
+
+import com.siniatech.siniabugs.model.abs.ModelObject;
+import com.siniatech.siniabugs.model.api.IRelease;
 
 @Entity
 @Table(name = "PROJECT_RELEASE")
-public class Release {
+public class Release extends ModelObject implements IRelease {
 
     private Long id;
     private String name;
-    private Date start;
-    private Date end;
-    private Date release_start;
-    private Date release_end;
+    private DateTime start;
+    private DateTime end;
+    private DateTime release_start;
+    private DateTime release_end;
     private BugsUser createdBy;
     private BugsUser editedBy;
+    private Long uid;
 
     @Id
     @GeneratedValue
@@ -34,6 +40,15 @@ public class Release {
         this.id = id;
     }
 
+    @Column(name = "uid")
+    public Long getUid() {
+        return uid;
+    }
+
+    public void setUid( Long uid ) {
+        this.uid = uid;
+    }
+
     @Column(name = "name")
     public String getName() {
         return name;
@@ -44,59 +59,72 @@ public class Release {
     }
 
     @Column(name = "start")
-    public Date getStart() {
+    @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
+    public DateTime getVersionStart() {
         return start;
     }
 
-    public void setStart( Date start ) {
+    public void setVersionStart( DateTime start ) {
         this.start = start;
     }
 
     @Column(name = "end")
-    public Date getEnd() {
+    @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
+    public DateTime getVersionEnd() {
         return end;
     }
 
-    public void setEnd( Date end ) {
+    public void setVersionEnd( DateTime end ) {
         this.end = end;
     }
 
     @Column(name = "release_start")
-    public Date getReleaseStart() {
+    @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
+    public DateTime getReleaseStart() {
         return release_start;
     }
 
-    public void setReleaseStart( Date start ) {
+    public void setReleaseStart( DateTime start ) {
         this.release_start = start;
     }
 
     @Column(name = "release_end")
-    public Date getReleaseEnd() {
+    @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
+    public DateTime getReleaseEnd() {
         return release_end;
     }
 
-    public void setReleaseEnd( Date end ) {
+    public void setReleaseEnd( DateTime end ) {
         this.release_end = end;
     }
 
+    @Override
     @ManyToOne
     @JoinColumn(name = "created_by_id")
     public BugsUser getCreatedBy() {
         return createdBy;
     }
 
+    @Override
     public void setCreatedBy( BugsUser createdBy ) {
         this.createdBy = createdBy;
     }
 
+    @Override
     @ManyToOne
     @JoinColumn(name = "edited_by_id")
     public BugsUser getEditedBy() {
         return editedBy;
     }
 
+    @Override
     public void setEditedBy( BugsUser editedBy ) {
         this.editedBy = editedBy;
+    }
+
+    @Transient
+    public boolean isHistorical() {
+        return false;
     }
 
 }

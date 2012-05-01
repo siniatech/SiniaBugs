@@ -27,7 +27,7 @@ public class PriorityController {
     }
 
     @RequestMapping(value = "/priorities", method = RequestMethod.GET)
-    public String getIssuesTypes( Model model ) {
+    public String getPriorities( Model model ) {
         model.addAttribute( "priorities", priorityDao.getPriorities() );
         return "priorities";
     }

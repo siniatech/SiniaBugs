@@ -11,26 +11,28 @@
 	background-color: silver;
 }
 </style>
-<title>Priorities</title>
+<title>Projects</title>
 </head>
 <body>
 
-	<c:if test="${fn:length(priorities) > 0}">
+	<c:if test="${fn:length(projects) > 0}">
 		<table>
 			<tr class="even">
 				<th>Name</th>
+				<th>Short Code</th>
 				<th>Created by</th>
 				<th>Last edited at</th>
 				<th>Last edited by</th>
 			</tr>
-			<c:forEach items="${priorities}" var="priority" varStatus="status">
+			<c:forEach items="${projects}" var="project" varStatus="status">
 				<tr class="<c:if test="${status.count % 2 == 0}">even</c:if>">
-					<td><a href="priority?id=${priority.id}">${priority.name}</a></td>
-					<td><a href="user?id=${priority.createdBy.id}">${priority.createdBy.firstName}
-							${priority.createdBy.surname}</a></td>
-					<td>${priority.versionStart}</td>
-					<td><a href="user?id=${priority.editedBy.id}">${priority.editedBy.firstName}
-							${priority.editedBy.surname}</a></td>
+					<td><a href="project?id=${project.id}">${project.name}</a></td>
+					<td>${project.shortCode}</td>
+					<td><a href="user?id=${project.createdBy.id}">${project.createdBy.firstName}
+							${project.createdBy.surname}</a></td>
+					<td>${project.versionStart}</td>
+					<td><a href="user?id=${project.editedBy.id}">${project.editedBy.firstName}
+							${project.editedBy.surname}</a></td>
 				</tr>
 			</c:forEach>
 		</table>

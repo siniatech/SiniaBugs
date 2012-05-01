@@ -1,8 +1,7 @@
-package com.siniatech.siniabugs.model.current;
+package com.siniatech.siniabugs.model.historical;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -13,13 +12,15 @@ import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 import com.siniatech.siniabugs.model.abs.ModelObject;
-import com.siniatech.siniabugs.model.api.ISeverity;
+import com.siniatech.siniabugs.model.api.IProject;
+import com.siniatech.siniabugs.model.current.BugsUser;
 
 @Entity
-@Table(name = "SEVERITY")
-public class Severity extends ModelObject implements ISeverity {
+@Table(name = "PROJECT_HISTORY")
+public class ProjectHistorical extends ModelObject implements IProject {
 
     private Long id;
+    private String shortCode;
     private String name;
     private DateTime start;
     private DateTime end;
@@ -27,8 +28,6 @@ public class Severity extends ModelObject implements ISeverity {
     private BugsUser editedBy;
     private Long uid;
 
-    @Id
-    @GeneratedValue
     @Column(name = "id")
     public Long getId() {
         return id;
@@ -38,6 +37,7 @@ public class Severity extends ModelObject implements ISeverity {
         this.id = id;
     }
 
+    @Id
     @Column(name = "uid")
     public Long getUid() {
         return uid;
@@ -45,6 +45,15 @@ public class Severity extends ModelObject implements ISeverity {
 
     public void setUid( Long uid ) {
         this.uid = uid;
+    }
+
+    @Column(name = "short_code")
+    public String getShortCode() {
+        return shortCode;
+    }
+
+    public void setShortCode( String shortCode ) {
+        this.shortCode = shortCode;
     }
 
     @Column(name = "name")
@@ -102,7 +111,7 @@ public class Severity extends ModelObject implements ISeverity {
 
     @Transient
     public boolean isHistorical() {
-        return false;
+        return true;
     }
 
 }

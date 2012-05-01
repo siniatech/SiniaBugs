@@ -12,6 +12,7 @@ import javax.persistence.Transient;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
+import com.siniatech.siniabugs.model.abs.ModelObject;
 import com.siniatech.siniabugs.model.api.IIssueStatus;
 
 @Entity

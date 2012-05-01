@@ -4,7 +4,7 @@ drop table if exists ISSUE;
 create table ISSUE (
 	id BIGINT NOT NULL AUTO_INCREMENT, PRIMARY KEY(id),
 	uid BIGINT NOT NULL,
-	title text,
+	name text,
 	assigned_to_id BIGINT, FOREIGN KEY (assigned_to_id) REFERENCES BUGS_USER(id),
 	project_id BIGINT, FOREIGN KEY (project_id) REFERENCES PROJECT(id),
 	release_id BIGINT, FOREIGN KEY (release_id) REFERENCES RELEASE_RELEASE(id),
@@ -24,7 +24,7 @@ create table ISSUE (
 create table ISSUE_HISTORY (
 	uid BIGINT NOT NULL, PRIMARY KEY(uid),
 	id BIGINT NOT NULL,
-	title text,
+	name text,
 	assigned_to_id BIGINT, FOREIGN KEY (assigned_to_id) REFERENCES BUGS_USER(id),
 	project_id BIGINT, FOREIGN KEY (project_id) REFERENCES PROJECT(id),
 	release_id BIGINT, FOREIGN KEY (release_id) REFERENCES RELEASE_RELEASE(id),

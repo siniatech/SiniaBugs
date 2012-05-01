@@ -11,9 +11,9 @@ import javax.persistence.Transient;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
+import com.siniatech.siniabugs.model.abs.ModelObject;
 import com.siniatech.siniabugs.model.api.IIssueStatus;
 import com.siniatech.siniabugs.model.current.BugsUser;
-import com.siniatech.siniabugs.model.current.ModelObject;
 
 @Entity
 @Table(name = "ISSUE_STATUS_HISTORY")

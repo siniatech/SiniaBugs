@@ -13,13 +13,14 @@ import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 import com.siniatech.siniabugs.model.abs.ModelObject;
-import com.siniatech.siniabugs.model.api.ISeverity;
+import com.siniatech.siniabugs.model.api.IProject;
 
 @Entity
-@Table(name = "SEVERITY")
-public class Severity extends ModelObject implements ISeverity {
+@Table(name = "PROJECT")
+public class Project extends ModelObject implements IProject {
 
     private Long id;
+    private String shortCode;
     private String name;
     private DateTime start;
     private DateTime end;
@@ -45,6 +46,15 @@ public class Severity extends ModelObject implements ISeverity {
 
     public void setUid( Long uid ) {
         this.uid = uid;
+    }
+
+    @Column(name = "short_code")
+    public String getShortCode() {
+        return shortCode;
+    }
+
+    public void setShortCode( String shortCode ) {
+        this.shortCode = shortCode;
     }
 
     @Column(name = "name")
