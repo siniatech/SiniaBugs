@@ -25,12 +25,12 @@
 			</tr>
 			<c:forEach items="${users}" var="user" varStatus="status">
 				<tr class="<c:if test="${status.count % 2 == 0}">even</c:if>">
-					<td><a href="user?id=${user.id}">${user.firstName}
+					<td><a href="user/viewUser?id=${user.id}">${user.firstName}
 							${user.surname}</a></td>
-					<td><a href="user?id=${user.createdBy.id}">${user.createdBy.firstName}
+					<td><a href="user/viewUser?id=${user.createdBy.id}">${user.createdBy.firstName}
 							${user.createdBy.surname}</a></td>
 					<td>${user.versionStart}</td>
-					<td><a href="user?id=${user.editedBy.id}">${user.editedBy.firstName}
+					<td><a href="user/viewUser?id=${user.editedBy.id}">${user.editedBy.firstName}
 							${user.editedBy.surname}</a></td>
 				</tr>
 			</c:forEach>
