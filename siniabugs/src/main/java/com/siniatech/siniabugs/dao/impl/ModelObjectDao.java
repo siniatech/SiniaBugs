@@ -14,6 +14,7 @@ abstract public class ModelObjectDao<T extends IModelObject> implements IModelOb
     protected HibernateTemplate hibernateTemplate;
 
     public void save( T t, IBugsUser savedBy ) {
+        t.setUid( 1L);
         t.setCreator( savedBy );
         t.setLastEditor( savedBy );
         t.setVersionStart( new DateTime() );

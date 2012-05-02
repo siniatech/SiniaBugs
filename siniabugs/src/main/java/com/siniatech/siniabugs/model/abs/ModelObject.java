@@ -28,6 +28,6 @@ abstract public class ModelObject {
 
     public void setLastEditor( IBugsUser lastEditor ) {
         assert !lastEditor.isHistorical();
-        setCreatedBy( (BugsUser) lastEditor );
+        setEditedBy( (BugsUser) lastEditor );
     }
 }

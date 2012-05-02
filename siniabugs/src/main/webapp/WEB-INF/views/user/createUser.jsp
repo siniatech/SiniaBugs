@@ -11,11 +11,11 @@
 	background-color: silver;
 }
 </style>
-<title>Add User</title>
+<title>Create user</title>
 </head>
 <body>
 
-	<form:form action="user" commandName="user">
+	<form:form action="create" commandName="create">
 		<table>
 			<tr>
 				<td>First name :</td>

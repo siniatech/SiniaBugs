@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.siniatech.siniabugs.dao.api.IBugsUserDao;
-import com.siniatech.siniabugs.model.api.IBugsUser;
+import com.siniatech.siniabugs.model.current.BugsUser;
 
 @Controller
 public class BugsUserController {
@@ -17,31 +17,31 @@ public class BugsUserController {
     @Autowired
     private IBugsUserDao bugsUserDao;
 
-    @RequestMapping(value = "/user/viewUser", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/view", method = RequestMethod.GET)
     public String getUser( @RequestParam(value = "id") String id, Model model ) {
         try {
             long longId = Long.parseLong( id );
             model.addAttribute( "user", bugsUserDao.getBugsUser( longId ) );
-            return "user/viewUser";
+            return "/user/viewUser";
         } catch ( NumberFormatException e ) {
-            return "user/viewUser";
+            return "/user/viewUser";
         }
     }
 
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/admin", method = RequestMethod.GET)
     public String getUsers( Model model ) {
         model.addAttribute( "users", bugsUserDao.getBugsUsers() );
-        return "users";
+        return "user/userAdmin";
     }
 
-    @RequestMapping(value = "/user/createUser", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/create", method = RequestMethod.GET)
     public String createBugsUser( Model model ) {
-        model.addAttribute( "user", bugsUserDao.newInstance() );
+        model.addAttribute( "create", bugsUserDao.newInstance() );
         return "user/createUser";
     }
 
-    @RequestMapping(value = "/user/createUser", method = RequestMethod.POST)
-    public String saveAndViewBugsUser( @ModelAttribute IBugsUser bugsUser, Model model ) {
+    @RequestMapping(value = "/user/create", method = RequestMethod.POST)
+    public String saveAndViewBugsUser( @ModelAttribute BugsUser bugsUser, Model model ) {
         bugsUserDao.save( bugsUser, bugsUserDao.getBugsUser( 1L ) );
         model.addAttribute( "user", bugsUser );
         return "user/viewUser";

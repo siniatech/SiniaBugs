@@ -22,19 +22,23 @@
 				<th>Created by</th>
 				<th>Last edited at</th>
 				<th>Last edited by</th>
+				<th>Actions</th>
 			</tr>
 			<c:forEach items="${users}" var="user" varStatus="status">
 				<tr class="<c:if test="${status.count % 2 == 0}">even</c:if>">
-					<td><a href="user/viewUser?id=${user.id}">${user.firstName}
+					<td><a href="view?id=${user.id}">${user.firstName}
 							${user.surname}</a></td>
-					<td><a href="user/viewUser?id=${user.createdBy.id}">${user.createdBy.firstName}
+					<td><a href="view?id=${user.createdBy.id}">${user.createdBy.firstName}
 							${user.createdBy.surname}</a></td>
 					<td>${user.versionStart}</td>
-					<td><a href="user/viewUser?id=${user.editedBy.id}">${user.editedBy.firstName}
+					<td><a href="view?id=${user.editedBy.id}">${user.editedBy.firstName}
 							${user.editedBy.surname}</a></td>
+					<td><a href="edit?id=${user.id}">Edit</a> <a href="delete?id=${user.id}">Delete</a></td>
 				</tr>
 			</c:forEach>
 		</table>
 	</c:if>
+	
+	<a href="create">Create new user</a>
 </body>
 </html>
