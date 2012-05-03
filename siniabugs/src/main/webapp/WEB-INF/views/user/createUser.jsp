@@ -11,11 +11,12 @@
 	background-color: silver;
 }
 </style>
-<title>Create user</title>
+<title>${action} user</title>
 </head>
 <body>
 
-	<form:form action="create" commandName="create">
+	<form:form action="${action}" commandName="user">
+		<form:hidden path="uid" />
 		<table>
 			<tr>
 				<td>First name :</td>
@@ -26,7 +27,7 @@
 				<td><form:input path="surname" /></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="Add"></td>
+				<td colspan="2"><input type="submit" value="${action}"></td>
 			</tr>
 		</table>
 	</form:form>

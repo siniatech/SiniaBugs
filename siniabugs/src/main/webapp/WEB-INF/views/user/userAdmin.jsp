@@ -26,19 +26,19 @@
 			</tr>
 			<c:forEach items="${users}" var="user" varStatus="status">
 				<tr class="<c:if test="${status.count % 2 == 0}">even</c:if>">
-					<td><a href="view?id=${user.id}">${user.firstName}
+					<td><a href="View?id=${user.id}">${user.firstName}
 							${user.surname}</a></td>
-					<td><a href="view?id=${user.createdBy.id}">${user.createdBy.firstName}
+					<td><a href="View?id=${user.createdBy.id}">${user.createdBy.firstName}
 							${user.createdBy.surname}</a></td>
 					<td>${user.versionStart}</td>
-					<td><a href="view?id=${user.editedBy.id}">${user.editedBy.firstName}
+					<td><a href="View?id=${user.editedBy.id}">${user.editedBy.firstName}
 							${user.editedBy.surname}</a></td>
-					<td><a href="edit?id=${user.id}">Edit</a> <a href="delete?id=${user.id}">Delete</a></td>
+					<td><a href="Edit?id=${user.id}">Edit</a> <a href="Delete?id=${user.id}">Delete</a></td>
 				</tr>
 			</c:forEach>
 		</table>
 	</c:if>
 	
-	<a href="create">Create new user</a>
+	<a href="Create">Create new user</a>
 </body>
 </html>

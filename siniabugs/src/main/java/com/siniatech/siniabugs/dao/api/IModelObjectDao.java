@@ -20,6 +20,8 @@ public interface IModelObjectDao<T extends IModelObject> {
 
     void update( T t, IBugsUser updatedBy );
 
-    T read( Long uid );
+    T readByUid( Long uid );
+    
+    T readById( Long id );
 
 }

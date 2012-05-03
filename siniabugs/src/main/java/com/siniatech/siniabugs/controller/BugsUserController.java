@@ -18,21 +18,21 @@ public class BugsUserController {
     @Autowired
     private IBugsUserDao bugsUserDao;
 
-    @RequestMapping(value = "/user/view", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/View", method = RequestMethod.GET)
     public String getUser( @RequestParam(value = "id") String id, final Model model ) {
         return getIdAndApply( id, model, new IFunction1<Long, String>() {
             public String apply( Long longId ) {
-                model.addAttribute( "user", bugsUserDao.getBugsUser( longId ) );
+                model.addAttribute( "user", bugsUserDao.readById( longId ) );
                 return "/user/viewUser";
             }
         } );
     }
 
-    @RequestMapping(value = "/user/delete", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/Delete", method = RequestMethod.GET)
     public String deleteUser( @RequestParam(value = "id") String id, final Model model ) {
         return getIdAndApply( id, model, new IFunction1<Long, String>() {
             public String apply( Long longId ) {
-                bugsUserDao.delete( bugsUserDao.getBugsUser( longId ), bugsUserDao.getBugsUser( 1L ) );
+                bugsUserDao.delete( bugsUserDao.readById( longId ), bugsUserDao.readById( 1L ) );
                 model.addAttribute( "users", bugsUserDao.getBugsUsers() );
                 return "user/userAdmin";
             }
@@ -49,21 +49,40 @@ public class BugsUserController {
         }
     }
 
-    @RequestMapping(value = "/user/admin", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/Admin", method = RequestMethod.GET)
     public String getUsers( Model model ) {
         model.addAttribute( "users", bugsUserDao.getBugsUsers() );
         return "user/userAdmin";
     }
 
-    @RequestMapping(value = "/user/create", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/Edit", method = RequestMethod.GET)
+    public String editBugsUser( @RequestParam(value = "id") String id, final Model model ) {
+        return getIdAndApply( id, model, new IFunction1<Long, String>() {
+            public String apply( Long longId ) {
+                model.addAttribute( "user", bugsUserDao.readById( longId ) );
+                model.addAttribute( "action", "Edit" );
+                return "user/createUser";
+            }
+        } );
+    }
+    
+    @RequestMapping(value = "/user/Edit", method = RequestMethod.POST)
+    public String saveEditedBugsUser( @ModelAttribute BugsUser bugsUser, Model model ) {
+        bugsUserDao.update( bugsUser, bugsUserDao.readById( 1L ) );
+        model.addAttribute( "user", bugsUser );
+        return "user/viewUser";
+    }
+
+    @RequestMapping(value = "/user/Create", method = RequestMethod.GET)
     public String createBugsUser( Model model ) {
-        model.addAttribute( "create", bugsUserDao.newInstance() );
+        model.addAttribute( "user", bugsUserDao.newInstance() );
+        model.addAttribute( "action", "Create" );
         return "user/createUser";
     }
 
-    @RequestMapping(value = "/user/create", method = RequestMethod.POST)
-    public String saveAndViewBugsUser( @ModelAttribute BugsUser bugsUser, Model model ) {
-        bugsUserDao.create( bugsUser, bugsUserDao.getBugsUser( 1L ) );
+    @RequestMapping(value = "/user/Create", method = RequestMethod.POST)
+    public String saveNewBugsUser( @ModelAttribute BugsUser bugsUser, Model model ) {
+        bugsUserDao.create( bugsUser, bugsUserDao.readById( 1L ) );
         model.addAttribute( "user", bugsUser );
         return "user/viewUser";
     }

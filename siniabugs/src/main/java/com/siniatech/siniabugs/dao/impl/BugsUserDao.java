@@ -15,7 +15,7 @@ public class BugsUserDao extends ModelObjectDao<IBugsUser> implements IBugsUserD
         return hibernateTemplate.find( "from BugsUser" );
     }
 
-    public IBugsUser getBugsUser( Long id ) {
+    public IBugsUser readById( Long id ) {
         List<IBugsUser> users = hibernateTemplate.find( "from BugsUser where id = " + id );
         assert users.size() == 1;
         return ListHelper.head( users );
@@ -41,7 +41,21 @@ public class BugsUserDao extends ModelObjectDao<IBugsUser> implements IBugsUserD
         target.setFirstName( source.getFirstName() );
         target.setSurname( source.getSurname() );
     }
-    
 
+    public IBugsUser readByUid( Long uid ) {
+        List<IBugsUser> users = hibernateTemplate.find( "from BugsUser where uid = " + uid );
+        switch ( users.size() ) {
+            case 0 : {
+                users = hibernateTemplate.find( "from BugsUserHistorical where uid = " + uid );
+                assert users.size() == 1;
+                return ListHelper.head( users );
+            }
+            case 1 : {
+                return ListHelper.head( users );
+            }
+        }
+        assert false;
+        return null;
+    }
 
 }

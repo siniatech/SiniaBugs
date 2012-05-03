@@ -8,7 +8,7 @@ public interface IBugsUserDao extends IModelObjectDao<IBugsUser> {
 
     List<IBugsUser> getBugsUsers();
 
-    IBugsUser getBugsUser( Long id );
+    IBugsUser readById( Long id );
 
     List<IBugsUser> getHistoryForBugsUser( Long id );
 

@@ -32,6 +32,7 @@ abstract public class ModelObjectDao<T extends IModelObject> implements IModelOb
     }
 
     private void archiveCurrentRecord( T t1, DateTime at ) {
+        assert !t1.isHistorical();
         T t2 = createHistoricalFrom( t1 );
         t2.setVersionEnd( at );
         hibernateTemplate.saveOrUpdate( t2 );
@@ -44,13 +45,15 @@ abstract public class ModelObjectDao<T extends IModelObject> implements IModelOb
         return t2;
     }
 
-    //todo
     public void update( T t, IBugsUser updatedBy ) {
-    }
-
-    //todo
-    public T read( Long uid ) {
-        return null;
+        DateTime updatedAt = new DateTime();
+        T orig = readByUid( t.getUid() );
+        archiveCurrentRecord( orig, updatedAt );
+        copyGenericFields( orig, t );
+        t.setLastEditor( updatedBy );
+        t.setVersionStart( updatedAt );
+        t.setVersionEnd( null );
+        hibernateTemplate.saveOrUpdate( t );
     }
 
     public T copy( T t1 ) {
