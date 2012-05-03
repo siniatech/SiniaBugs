@@ -32,5 +32,5 @@ public interface IModelObject extends INamed {
     void setLastEditor( IBugsUser lastEditor );
     
     String getName();
-
+    
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import com.siniatech.siniabugs.dao.api.IBugsUserDao;
 import com.siniatech.siniabugs.model.api.IBugsUser;
 import com.siniatech.siniabugs.model.current.BugsUser;
+import com.siniatech.siniabugs.model.historical.BugsUserHistorical;
 import com.siniatech.siniautils.collection.ListHelper;
 
 public class BugsUserDao extends ModelObjectDao<IBugsUser> implements IBugsUserDao {
@@ -29,6 +30,16 @@ public class BugsUserDao extends ModelObjectDao<IBugsUser> implements IBugsUserD
 
     public IBugsUser newInstance() {
         return new BugsUser();
+    }
+
+    public IBugsUser newInstanceHistorical() {
+        return new BugsUserHistorical();
+    }
+
+    @Override
+    protected void copyNonGenericFields( IBugsUser source, IBugsUser target ) {
+        target.setFirstName( source.getFirstName() );
+        target.setSurname( source.getSurname() );
     }
     
 

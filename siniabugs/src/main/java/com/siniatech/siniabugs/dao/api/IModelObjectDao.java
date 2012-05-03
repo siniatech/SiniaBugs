@@ -5,11 +5,21 @@ import com.siniatech.siniabugs.model.api.IModelObject;
 
 public interface IModelObjectDao<T extends IModelObject> {
 
+    // should these be exposed or internalised?
     T newInstance();
 
-    void save( T t, IBugsUser user );
-    
+    T newInstanceHistorical();
+
+    T copy( T t );
+
+    //
+
+    void create( T t, IBugsUser createdBy );
+
     void delete( T t, IBugsUser deletedBy );
 
+    void update( T t, IBugsUser updatedBy );
+
+    T read( Long uid );
 
 }

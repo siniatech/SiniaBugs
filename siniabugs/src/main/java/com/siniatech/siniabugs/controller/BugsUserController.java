@@ -63,7 +63,7 @@ public class BugsUserController {
 
     @RequestMapping(value = "/user/create", method = RequestMethod.POST)
     public String saveAndViewBugsUser( @ModelAttribute BugsUser bugsUser, Model model ) {
-        bugsUserDao.save( bugsUser, bugsUserDao.getBugsUser( 1L ) );
+        bugsUserDao.create( bugsUser, bugsUserDao.getBugsUser( 1L ) );
         model.addAttribute( "user", bugsUser );
         return "user/viewUser";
     }
