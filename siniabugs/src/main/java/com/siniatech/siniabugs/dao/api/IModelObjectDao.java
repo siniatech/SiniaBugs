@@ -5,8 +5,11 @@ import com.siniatech.siniabugs.model.api.IModelObject;
 
 public interface IModelObjectDao<T extends IModelObject> {
 
-    void save( T t, IBugsUser user );
-
     T newInstance();
+
+    void save( T t, IBugsUser user );
+    
+    void delete( T t, IBugsUser deletedBy );
+
 
 }

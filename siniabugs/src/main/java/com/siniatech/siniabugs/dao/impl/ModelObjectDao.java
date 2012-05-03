@@ -14,10 +14,17 @@ abstract public class ModelObjectDao<T extends IModelObject> implements IModelOb
     protected HibernateTemplate hibernateTemplate;
 
     public void save( T t, IBugsUser savedBy ) {
-        t.setUid( 1L);
+        t.setUid( 1L );
         t.setCreator( savedBy );
         t.setLastEditor( savedBy );
         t.setVersionStart( new DateTime() );
+        hibernateTemplate.saveOrUpdate( t );
+    }
+
+    // should be set ended, copy and then delete
+    public void delete( T t, IBugsUser deletedBy ) {
+        t.setVersionEnd( new DateTime() );
+        t.setLastEditor( deletedBy );
         hibernateTemplate.saveOrUpdate( t );
     }
 }
