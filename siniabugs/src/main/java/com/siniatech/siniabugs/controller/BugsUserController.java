@@ -1,6 +1,7 @@
 package com.siniatech.siniabugs.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,6 +19,7 @@ public class BugsUserController {
     @Autowired
     private IBugsUserDao bugsUserDao;
 
+    @PreAuthorize("hasRole('user')")
     @RequestMapping(value = "/user/View", method = RequestMethod.GET)
     public String getUser( @RequestParam(value = "id") String id, final Model model ) {
         return getIdAndApply( id, model, new IFunction1<Long, String>() {
@@ -28,6 +30,7 @@ public class BugsUserController {
         } );
     }
 
+    @PreAuthorize("hasRole('admin')")
     @RequestMapping(value = "/user/Delete", method = RequestMethod.GET)
     public String deleteUser( @RequestParam(value = "id") String id, final Model model ) {
         return getIdAndApply( id, model, new IFunction1<Long, String>() {
@@ -49,12 +52,14 @@ public class BugsUserController {
         }
     }
 
+    @PreAuthorize("hasRole('user')")
     @RequestMapping(value = "/user/Admin", method = RequestMethod.GET)
     public String getUsers( Model model ) {
         model.addAttribute( "users", bugsUserDao.getBugsUsers() );
         return "user/userAdmin";
     }
 
+    @PreAuthorize("hasRole('admin')")
     @RequestMapping(value = "/user/Edit", method = RequestMethod.GET)
     public String editBugsUser( @RequestParam(value = "id") String id, final Model model ) {
         return getIdAndApply( id, model, new IFunction1<Long, String>() {
@@ -65,7 +70,8 @@ public class BugsUserController {
             }
         } );
     }
-    
+
+    @PreAuthorize("hasRole('admin')")
     @RequestMapping(value = "/user/Edit", method = RequestMethod.POST)
     public String saveEditedBugsUser( @ModelAttribute BugsUser bugsUser, Model model ) {
         bugsUserDao.update( bugsUser, bugsUserDao.readById( 1L ) );
@@ -73,6 +79,7 @@ public class BugsUserController {
         return "user/viewUser";
     }
 
+    @PreAuthorize("hasRole('admin')")
     @RequestMapping(value = "/user/Create", method = RequestMethod.GET)
     public String createBugsUser( Model model ) {
         model.addAttribute( "user", bugsUserDao.newInstance() );
@@ -80,6 +87,7 @@ public class BugsUserController {
         return "user/createUser";
     }
 
+    @PreAuthorize("hasRole('admin')")
     @RequestMapping(value = "/user/Create", method = RequestMethod.POST)
     public String saveNewBugsUser( @ModelAttribute BugsUser bugsUser, Model model ) {
         bugsUserDao.create( bugsUser, bugsUserDao.readById( 1L ) );

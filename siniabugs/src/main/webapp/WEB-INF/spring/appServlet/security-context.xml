@@ -8,12 +8,11 @@
                     http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
     <http use-expressions="true">
-    	<intercept-url pattern="/user/View" access="permitAll" />
-    	<intercept-url pattern="/user/Admin" access="isAuthenticated()" />
-    	<intercept-url pattern="/user/Delete" access="hasRole('admin')" />
-    	<intercept-url pattern="/**" access="denyAll" />
+    	<intercept-url pattern="/**" access="isAuthenticated()" />
         <form-login />
     </http>
+    
+    <global-method-security pre-post-annotations="enabled"/>
 
     <authentication-manager>
         <authentication-provider>
