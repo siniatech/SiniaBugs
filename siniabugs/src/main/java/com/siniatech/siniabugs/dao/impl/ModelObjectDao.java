@@ -20,7 +20,7 @@ abstract public class ModelObjectDao<T extends IModelObject> implements IModelOb
 
     private Long getNextUid() {
         StatelessSession session = hibernateTemplate.getSessionFactory().openStatelessSession();
-        BigInteger uid = ListHelper.head( session.createSQLQuery( "select nextUid() from dual" ).list() );
+        BigInteger uid = ListHelper.<BigInteger> head( session.createSQLQuery( "select nextUid() from dual" ).list() );
         return uid.longValue();
     }
 
