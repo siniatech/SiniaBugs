@@ -1,9 +1,10 @@
 package com.siniatech.siniabugs.model.abs;
 
 import com.siniatech.siniabugs.model.api.IBugsUser;
+import com.siniatech.siniabugs.model.api.IModelObject;
 import com.siniatech.siniabugs.model.current.BugsUser;
 
-abstract public class ModelObject {
+abstract public class ModelObject implements IModelObject {
 
     abstract public BugsUser getCreatedBy();
 

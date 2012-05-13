@@ -14,6 +14,7 @@
 <title>Users</title>
 </head>
 <body>
+	<P>Logged in as: ${users[0].currentUserName}</P>
 
 	<c:if test="${fn:length(users) > 0}">
 		<table>
@@ -28,11 +29,11 @@
 				<tr class="<c:if test="${status.count % 2 == 0}">even</c:if>">
 					<td><a href="View?id=${user.id}">${user.firstName}
 							${user.surname}</a></td>
-					<td><a href="View?id=${user.createdBy.id}">${user.createdBy.firstName}
-							${user.createdBy.surname}</a></td>
+					<td><a href="View?id=${user.creator.id}">${user.creator.firstName}
+							${user.creator.surname}</a></td>
 					<td>${user.versionStart}</td>
-					<td><a href="View?id=${user.editedBy.id}">${user.editedBy.firstName}
-							${user.editedBy.surname}</a></td>
+					<td><a href="View?id=${user.lastEditor.id}">${user.lastEditor.firstName}
+							${user.lastEditor.surname}</a></td>
 					<td><a href="Edit?id=${user.id}">Edit</a> <a href="Delete?id=${user.id}">Delete</a></td>
 				</tr>
 			</c:forEach>

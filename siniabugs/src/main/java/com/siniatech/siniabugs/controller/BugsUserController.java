@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.siniatech.siniabugs.dao.api.IBugsUserDao;
 import com.siniatech.siniabugs.model.current.BugsUser;
+import com.siniatech.siniabugs.model.util.ViewModelHelper;
 import com.siniatech.siniautils.fn.IFunction1;
 
 @Controller
@@ -18,6 +19,9 @@ public class BugsUserController {
 
     @Autowired
     private IBugsUserDao bugsUserDao;
+
+    @Autowired
+    private ViewModelHelper viewModelHelper;
 
     @PreAuthorize("hasRole('user')")
     @RequestMapping(value = "/user/View", method = RequestMethod.GET)
@@ -55,7 +59,7 @@ public class BugsUserController {
     @PreAuthorize("hasRole('user')")
     @RequestMapping(value = "/user/Admin", method = RequestMethod.GET)
     public String getUsers( Model model ) {
-        model.addAttribute( "users", bugsUserDao.getBugsUsers() );
+        model.addAttribute( "users", viewModelHelper.createViewModelObjects( bugsUserDao.getBugsUsers() ) );
         return "user/userAdmin";
     }
 

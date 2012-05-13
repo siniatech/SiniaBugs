@@ -4,12 +4,19 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+import com.siniatech.siniabugs.model.current.BugsUser;
+import com.siniatech.siniabugs.model.historical.BugsUserHistorical;
+import com.siniatech.siniabugs.model.util.ViewModelHelper;
+import com.siniatech.siniabugs.viewModel.impl.BugsUserViewModel;
 
 @Configuration
 public class SiniaBugsConfig {
@@ -20,6 +27,14 @@ public class SiniaBugsConfig {
         resolver.setPrefix( "/WEB-INF/views/" );
         resolver.setSuffix( ".jsp" );
         return resolver;
+    }
+
+    @Bean
+    ViewModelHelper viewModelHelper() {
+        Map<Class<?>, Class<?>> modelToViewModelClassMap = new HashMap<Class<?>, Class<?>>();
+        modelToViewModelClassMap.put( BugsUser.class, BugsUserViewModel.class );
+        modelToViewModelClassMap.put( BugsUserHistorical.class, BugsUserViewModel.class );
+        return new ViewModelHelper( modelToViewModelClassMap );
     }
 
     @Bean

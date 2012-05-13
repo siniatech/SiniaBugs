@@ -1,6 +1,5 @@
 package com.siniatech.siniabugs.model.api;
 
-
 public interface IBugsUser extends IModelObject {
 
     String getFirstName();
